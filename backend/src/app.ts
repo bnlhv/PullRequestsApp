@@ -16,8 +16,13 @@ class App {
 
   // Express template configure of middleware.
   private middleware(): void {
+    const cors = require("cors")
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
+    this.express.use(cors({
+      origin: "http://localhost:3000",
+      options: ["GET", "POST"],
+    }));
   }
 
   // Function that configure all routes of api to express object.

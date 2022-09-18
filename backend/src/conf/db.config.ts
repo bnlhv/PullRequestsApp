@@ -9,7 +9,7 @@ let database: Mongoose.Connection;
 
 // Function to connect to the database if the connection is down.
 export const connect = () => {
-  const url = `mongodb://${process.env.MONGO_HOST || "localhost"}:${process.env.MONGO_PORT || "27017"}/prs`;
+  const url = `mongodb://${process.env.MONGO_HOST || "db"}:${process.env.MONGO_PORT || "27017"}/prs`;
   const options: Mongoose.ConnectOptions = {
     dbName: "prs",
     autoIndex: false,

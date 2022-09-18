@@ -1,10 +1,9 @@
-import React from 'react'
-import { BiGitPullRequest } from 'react-icons/bi';
-import { FiLogOut } from 'react-icons/fi';
-import { MdSpaceDashboard } from 'react-icons/md';
-import { FiGitPullRequest } from 'react-icons/fi';
-import { Links, ListItem, Section } from './SideBar.styles';
-
+import React from "react";
+import { BiGitPullRequest } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
+import { MdSpaceDashboard } from "react-icons/md";
+import { FiGitPullRequest } from "react-icons/fi";
+import { Links, ListItem, Section } from "./SideBar.styles";
 
 const SideBar: React.FC<{}> = (): JSX.Element => {
   return (
@@ -14,8 +13,10 @@ const SideBar: React.FC<{}> = (): JSX.Element => {
           <div className="brand">
             <BiGitPullRequest />
             <div>
-              <span>Pull</span><br/>
-              <span>Requests</span><br/>
+              <span>Pull</span>
+              <br />
+              <span>Requests</span>
+              <br />
             </div>
           </div>
         </div>
@@ -23,19 +24,19 @@ const SideBar: React.FC<{}> = (): JSX.Element => {
         <Links>
           <ul>
             <ListItem>
-              <a href='#'>
+              <a href="#">
                 <MdSpaceDashboard />
                 <span> Dashboard</span>
               </a>
             </ListItem>
             <ListItem>
-              <a href='#'>
+              <a href="#">
                 <FiGitPullRequest />
                 <span> Pull Requests</span>
               </a>
             </ListItem>
           </ul>
-          </Links>
+        </Links>
         <div className="logout">
           <a href="#">
             <FiLogOut />
@@ -44,7 +45,7 @@ const SideBar: React.FC<{}> = (): JSX.Element => {
         </div>
       </Section>
     </>
-  )
-}
+  );
+};
 
 export default SideBar;

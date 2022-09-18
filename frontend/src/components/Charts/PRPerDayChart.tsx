@@ -8,27 +8,34 @@ interface Props {
   pullRequests: IPullRequest[] | null;
 }
 
+type DateArray = (string | null)[] | undefined;
+
 const PRPerDayChart: React.FC<Props> = (props: Props): JSX.Element => {
-    
-  let dates: (string | null)[] | undefined = props.pullRequests?.sort().map((value) =>
-  value["createdAt"] ? value["createdAt"].toDateString() : null
-  );
+  let dates: DateArray = props.pullRequests
+    ?.sort()
+    .map((value) =>
+      value["createdAt"] ? new Date(value["createdAt"])?.toDateString() : null
+    );
+  //   Use this instead of dates to see mock data on dashboard
+  let mockDates: DateArray = mockPullRequests
+    ?.sort()
+    .map((value: any) =>
+      value["createdAt"] ? value["createdAt"]?.toDateString() : null
+    );
 
-//   Use this instead of dates to see mock data on dashboard
-  let mockDates: (string | null)[] | undefined = mockPullRequests.sort().map((value: any) =>
-  value["createdAt"] ? value["createdAt"].toDateString() : null
-  );
+  function date_data(dates: DateArray): Object[] {
+    let mappedDates: any = dates?.reduce(
+      (acc, e) => acc.set(e, (acc.get(e) || 0) + 1),
+      new Map()
+    );
+    let data: Object[] = [];
+    mappedDates?.forEach((k: string, v: number) => data.push({ data: k }));
 
-  function date_data(dates: (string | null)[] | undefined): Object[]{
-      let mappedDates: any = dates?.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
-      let data: Object[] = [];
-      mappedDates?.forEach((k: string, v: number) => data.push({data:k}));
-      
-      return data;
-    } 
-    let data = date_data(dates);
-    data = data.length ? data : date_data(mockDates)
-  
+    return data;
+  }
+  let data = date_data(dates);
+  data = data.length > 1 ? data : date_data(mockDates);
+
   return (
     <Section>
       <div className="top">
